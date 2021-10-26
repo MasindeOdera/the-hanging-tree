@@ -13,7 +13,7 @@
       </li>
     </ul>
     <h1 class="reveal-word" v-show="attempts === 0">
-      The word was {{ mysteryWord }}
+      It was {{ mysteryWord }}
     </h1>
   </div>
 </template>
