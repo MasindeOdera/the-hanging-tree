@@ -10,5 +10,5 @@ cd dist
 git init
 git add -A
 git commit -m 'deploy'
-git push -f git@github.com:MasindeOdera/the-hanging-tree.git master:gh-pages
+git push -f git@github.com:MasindeOdera/the-hanging-tree.git main:gh-pages
 cd -
