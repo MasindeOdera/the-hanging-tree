@@ -9,6 +9,6 @@ cd dist
 # echo 'www.example.com' > CNAME
 git init
 git add -A
-git commit -m 'deploy'
-git push -f git@github.com:MasindeOdera/the-hanging-tree.git main:gh-pages
+git commit -m 'New Deployment'
+git push -f git@github.com:MasindeOdera/the-hanging-tree.git master:gh-pages
 cd -
