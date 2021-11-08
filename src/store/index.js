@@ -151,6 +151,8 @@ export default new Vuex.Store({
     incorrectChoice: [],
     attempts: 7,
     game: false,
+    status: ["start", "play", "stop"],
+    stage: "start",
   },
   mutations: {
     //syncronous
@@ -178,8 +180,11 @@ export default new Vuex.Store({
     reduceAttempt(state) {
       state.attempts--;
     },
-    startGame(state) {
-      state.game = true;
+    startGame(state, payload) {
+      state.game = payload;
+    },
+    setStage(state, payload) {
+      state.stage = payload;
     },
   },
   actions: {
@@ -200,12 +205,34 @@ export default new Vuex.Store({
         commit("reduceAttempt");
       }
       commit("setButtonSelected", true);
+      // Update game status to "stop".
+      if (this.state.attempts === 0) {
+        let option = this.state.status[2];
+        commit("setStage", option);
+      }
+    },
+    async startGame({ commit }) {
+      commit("startGame", true);
+      // Update game status to "play".
+      let option = this.state.status[1];
+      commit("setStage", option);
       setTimeout(() => {
         window.scrollTo({ top: 0, behavior: "smooth" });
       }, 500);
     },
-    async startGame({ commit }) {
-      commit("startGame");
+    async replayGame({ commit }) {
+      commit("setAttempts", 7);
+      commit("setGuess", []);
+      commit("setIncorrectChoice", []);
+      // Update game status to "start".
+      let option = this.state.status[0];
+      commit("setStage", option);
+      // Reset letter booleans.
+      Object.values(this.state.alphabetOptions).forEach(
+        (alphabetOptions) => (alphabetOptions.chosen = false)
+      );
+      // Reset to false for next game.
+      commit("setButtonSelected", false);
     },
   },
   modules: {},
@@ -217,5 +244,6 @@ export default new Vuex.Store({
     getGuess: (state) => state.guess,
     getAttempts: (state) => state.attempts,
     getGame: (state) => state.game,
+    getStage: (state) => state.stage,
   },
 });

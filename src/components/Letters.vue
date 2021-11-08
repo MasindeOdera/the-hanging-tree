@@ -1,7 +1,9 @@
 <template>
   <div
     class="letters"
-    v-bind:class="{ standby: !this.started || this.attempts === 0 }"
+    v-bind:class="{
+      standby: !this.started || this.stage !== 'play' || this.attempts === 0,
+    }"
   >
     <div
       class="alphabet"
@@ -29,7 +31,7 @@ export default {
     ...mapActions(["setAlphabetOptions", "selectButton"]),
     bringTreeIntoView(choice, chosen) {
       // Only update store if game has started.
-      if (this.started) {
+      if (this.stage === "play") {
         this.selectButton(choice, chosen);
       }
     },
@@ -39,6 +41,7 @@ export default {
       alphabetOptions: "getAlphabetOptions",
       started: "getGame",
       attempts: "getAttempts",
+      stage: "getStage",
     }),
   },
 };
