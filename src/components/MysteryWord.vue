@@ -15,7 +15,11 @@
     <h1 class="reveal-word" v-show="stage === 'stop'">
       It was {{ mysteryWord }}
     </h1>
-    <button class="again" @click="replay()" v-show="stage === 'stop'">
+    <button
+      class="again"
+      @click="replay()"
+      v-show="stage === 'stop' || length === 0"
+    >
       <b>Play again?</b>
     </button>
   </div>
@@ -37,6 +41,8 @@ export default {
     },
     replay() {
       this.replayGame();
+      this.fetchLetters();
+      this.startGame();
     },
   },
   computed: {
@@ -46,6 +52,7 @@ export default {
       start: "getGame",
       attempts: "getAttempts",
       stage: "getStage",
+      length: "getWordLength",
     }),
   },
   created() {

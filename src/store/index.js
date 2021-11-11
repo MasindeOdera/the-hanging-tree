@@ -153,6 +153,7 @@ export default new Vuex.Store({
     game: false,
     status: ["start", "play", "stop"],
     stage: "start",
+    wordLength: 0,
   },
   mutations: {
     //syncronous
@@ -186,20 +187,27 @@ export default new Vuex.Store({
     setStage(state, payload) {
       state.stage = payload;
     },
+    reduceWordLength(state, payload) {
+      state.wordLength = payload;
+    },
   },
   actions: {
-    //asyncronous
+    // Asyncronous
     async fetchLetters({ commit }) {
       const animal =
         this.state.animals[
           Math.floor(Math.random() * this.state.animals.length)
         ];
       commit("setMysteryWord", animal);
+      commit("reduceWordLength", animal.length);
     },
     async selectButton({ commit }, choice) {
       // Add guessed letter to array.
       if (this.state.mysteryWord.includes(choice)) {
         this.state.guess.push(choice);
+        let count = this.state.mysteryWord.split(choice).length - 1;
+        let reduced = this.state.wordLength - count;
+        commit("reduceWordLength", reduced);
       } else {
         this.state.incorrectChoice.push(choice);
         commit("reduceAttempt");
@@ -245,5 +253,6 @@ export default new Vuex.Store({
     getAttempts: (state) => state.attempts,
     getGame: (state) => state.game,
     getStage: (state) => state.stage,
+    getWordLength: (state) => state.wordLength,
   },
 });
