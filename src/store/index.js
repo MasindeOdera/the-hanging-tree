@@ -254,5 +254,6 @@ export default new Vuex.Store({
     getGame: (state) => state.game,
     getStage: (state) => state.stage,
     getWordLength: (state) => state.wordLength,
+    getIncorrectChoice: (state) => state.incorrectChoice,
   },
 });
