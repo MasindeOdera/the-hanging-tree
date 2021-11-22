@@ -447,7 +447,8 @@ export default {
 }
 /* Toggle state pn page mount? Simulate svg Hover in Vue */
 .hangman-svg:hover {
-  stroke-dasharray: 5500;
+  stroke-dasharray: 6000;
+  // stroke-dasharray: 5500;
   stroke-dashoffset: 5500;
   animation: animate-tree 2s linear forwards;
 }
@@ -459,12 +460,8 @@ export default {
 }
 
 #HangmanTree #Tree path {
-  /* fill-opacity: 0%; */
   stroke-width: 4;
   stroke: #2c3e50;
-  /* stroke-dasharray: 5500;
-  stroke-dashoffset: 5500; */
-  /* animation: animate-tree 2s linear forwards; */
 }
 
 .animate-tree {
@@ -475,16 +472,18 @@ export default {
 @keyframes animate-tree {
   0% {
     stroke-dashoffset: 0;
+    fill-opacity: 0%;
   }
   40% {
     stroke-dashoffset: 5500;
-  }
-  80% {
-    stroke-dashoffset: 10900;
     fill-opacity: 0%;
   }
+  80% {
+    stroke-dashoffset: 8250;
+    fill-opacity: 10%;
+  }
   100% {
-    stroke-dashoffset: 12000;
+    stroke-dashoffset: 11000;
     fill-opacity: 100%;
   }
 }
@@ -523,25 +522,25 @@ export default {
 }
 /* Animate the leaves */
 #Leaves :where(#Vector_24, #Vector_27, #Vector_28, #Vector_29) {
-  animation: leaves-breeze 1.8s infinite alternate ease-in-out;
+  animation: leaves-breeze 1.1s infinite alternate ease-in-out;
   transform-origin: bottom;
   transform-box: fill-box;
 }
 
 #Leaves :where(#Vector_25, #Vector_26) {
-  animation: leaves-breeze 1.8s infinite alternate ease-in-out;
+  animation: leaves-breeze 1.1s infinite alternate ease-in-out;
   transform-origin: right;
   transform-box: fill-box;
 }
 
 #Leaves :where(#Frame, #Frame_2, #Frame_6, #Frame_7, #Frame_8) {
-  animation: leaves-breeze 1.8s infinite alternate ease-in-out;
+  animation: leaves-breeze 1.1s infinite alternate ease-in-out;
   transform-origin: bottom;
   transform-box: fill-box;
 }
 
 #Leaves :where(#Frame_3, #Frame_4, #Frame_5) {
-  animation: leaves-breeze 1.8s infinite alternate ease-in-out;
+  animation: leaves-breeze 1.1s infinite alternate ease-in-out;
   transform-origin: left;
   transform-box: fill-box;
 }
@@ -551,7 +550,7 @@ export default {
 }
 
 .fade {
-  animation: fall 1.8s forwards ease-in-out !important;
+  animation: fall 1.8s forwards ease-in-out !important; // This needs to overide the default animation.
 }
 
 @keyframes fall {

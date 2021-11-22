@@ -218,6 +218,9 @@ export default new Vuex.Store({
         let option = this.state.status[2];
         commit("setStage", option);
       }
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 500);
     },
     async startGame({ commit }) {
       commit("startGame", true);
@@ -241,6 +244,9 @@ export default new Vuex.Store({
       );
       // Reset to false for next game.
       commit("setButtonSelected", false);
+      setTimeout(() => {
+        window.scrollTo({ top: 0, behavior: "smooth" });
+      }, 500);
     },
   },
   modules: {},
