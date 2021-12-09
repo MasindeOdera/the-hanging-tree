@@ -9,106 +9,132 @@ export default new Vuex.Store({
       {
         choice: "a",
         chosen: false,
+        status: "",
       },
       {
         choice: "b",
         chosen: false,
+        status: "",
       },
       {
         choice: "c",
         chosen: false,
+        status: "",
       },
       {
         choice: "d",
         chosen: false,
+        status: "",
       },
       {
         choice: "e",
         chosen: false,
+        status: "",
       },
       {
         choice: "f",
         chosen: false,
+        status: "",
       },
       {
         choice: "g",
         chosen: false,
+        status: "",
       },
       {
         choice: "h",
         chosen: false,
+        status: "",
       },
       {
         choice: "i",
         chosen: false,
+        status: "",
       },
       {
         choice: "j",
         chosen: false,
+        status: "",
       },
       {
         choice: "k",
         chosen: false,
+        status: "",
       },
       {
         choice: "l",
         chosen: false,
+        status: "",
       },
       {
         choice: "m",
         chosen: false,
+        status: "",
       },
       {
         choice: "n",
         chosen: false,
+        status: "",
       },
       {
         choice: "o",
         chosen: false,
+        status: "",
       },
       {
         choice: "p",
         chosen: false,
+        status: "",
       },
       {
         choice: "q",
         chosen: false,
+        status: "",
       },
       {
         choice: "r",
         chosen: false,
+        status: "",
       },
       {
         choice: "s",
         chosen: false,
+        status: "",
       },
       {
         choice: "t",
         chosen: false,
+        status: "",
       },
       {
         choice: "u",
         chosen: false,
+        status: "",
       },
       {
         choice: "v",
         chosen: false,
+        status: "",
       },
       {
         choice: "w",
         chosen: false,
+        status: "",
       },
       {
         choice: "x",
         chosen: false,
+        lstatus: "",
       },
       {
         choice: "y",
         chosen: false,
+        status: "",
       },
       {
         choice: "z",
         chosen: false,
+        status: "",
       },
     ],
     animals: [
@@ -190,6 +216,9 @@ export default new Vuex.Store({
     reduceWordLength(state, payload) {
       state.wordLength = payload;
     },
+    toggleLoading(state, payload) {
+      state.alphabetOptions = payload;
+    },
   },
   actions: {
     // Asyncronous
@@ -201,7 +230,16 @@ export default new Vuex.Store({
       commit("setMysteryWord", animal);
       commit("reduceWordLength", animal.length);
     },
+    // Create an action for loading.
     async selectButton({ commit }, choice) {
+      // Disable selected button.
+      setTimeout(() => {
+        this.state.alphabetOptions.forEach((letter) => {
+          if (letter.choice === choice) {
+            letter.status = "disabled";
+          }
+        });
+      }, 500);
       // Add guessed letter to array.
       if (this.state.mysteryWord.includes(choice)) {
         this.state.guess.push(choice);
@@ -240,7 +278,7 @@ export default new Vuex.Store({
       commit("setStage", option);
       // Reset letter booleans.
       Object.values(this.state.alphabetOptions).forEach(
-        (alphabetOptions) => (alphabetOptions.chosen = false)
+        (alphabetOptions) => (alphabetOptions.status = "")
       );
       // Reset to false for next game.
       commit("setButtonSelected", false);

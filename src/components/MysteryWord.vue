@@ -1,6 +1,10 @@
 <template>
   <div class="mystery">
-    <button class="start" @click="beginGame()" v-show="stage === 'start'">
+    <button
+      class="start btn-action"
+      @click="beginGame()"
+      v-show="stage === 'start'"
+    >
       <b>Start</b>
     </button>
     <ul v-show="stage === 'play'">
@@ -68,7 +72,9 @@ export default {
   .start,
   .again {
     margin: 0.8rem;
-    padding: 0.75rem 1.25rem;
+    padding: 0.5rem;
+    // padding: 0.75rem 1.25rem;
+    color: #000;
     background-color: #00bfa6;
     border: none;
     border-radius: 34px;
