@@ -15,13 +15,13 @@
           'btn btn-action s-circle',
           {
             button: letter.choice,
-            disabled: letter.status == 'disabled',
+            disabled: letter.chosen,
             loading: letter.status == 'loading',
           },
         ]"
         @click="
           (letter.status = 'loading'),
-            bringTreeIntoView(letter.choice, letter.chosen, letter.loading)
+            bringTreeIntoView(letter.choice, letter.chosen, letter.status)
         "
       >
         <b v-bind:class="{ selected: letter.chosen }">{{ letter.choice }}</b>
@@ -36,10 +36,10 @@ export default {
   name: "Letters",
   methods: {
     ...mapActions(["setAlphabetOptions", "selectButton"]),
-    bringTreeIntoView(choice, chosen, loading) {
+    bringTreeIntoView(choice, chosen, status) {
       // Only update store if game has started.
       if (this.stage === "play") {
-        this.selectButton({ choice, chosen, loading });
+        this.selectButton({ choice, chosen, status });
       }
     },
   },

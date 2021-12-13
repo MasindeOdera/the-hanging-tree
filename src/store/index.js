@@ -231,15 +231,19 @@ export default new Vuex.Store({
       commit("reduceWordLength", animal.length);
     },
     // Create an action for loading.
-    async selectButton({ commit }, choice) {
+    async selectButton({ commit }, letter) {
+      const { choice } = letter;
       // Disable selected button.
-      setTimeout(() => {
-        this.state.alphabetOptions.forEach((letter) => {
-          if (letter.choice === choice) {
-            letter.status = "disabled";
-          }
-        });
-      }, 500);
+      for (let i = 0; i < this.state.alphabetOptions.length; i++) {
+        if (this.state.alphabetOptions[i].status === "loading") {
+          // Update letter status after 2 seconds.
+          setTimeout(() => {
+            this.state.alphabetOptions[i].status = choice;
+            this.state.alphabetOptions[i].chosen = true;
+            this.state.alphabetOptions[i].status = "displayed";
+          }, 2000);
+        }
+      }
       // Add guessed letter to array.
       if (this.state.mysteryWord.includes(choice)) {
         this.state.guess.push(choice);
