@@ -289,7 +289,8 @@ export default new Vuex.Store({
       // Reset to false for next game.
       commit("setButtonSelected", false);
       setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
+        // Draw the user's attention to the lives count.
+        document.getElementByClassName("count").scrollIntoView();
       }, 500);
     },
   },
