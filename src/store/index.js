@@ -236,12 +236,12 @@ export default new Vuex.Store({
       // Disable selected button.
       for (let i = 0; i < this.state.alphabetOptions.length; i++) {
         if (this.state.alphabetOptions[i].status === "loading") {
-          // Update letter status after 2 seconds.
+          // Update letter status after 1 second.
           setTimeout(() => {
             this.state.alphabetOptions[i].status = choice;
             this.state.alphabetOptions[i].chosen = true;
             this.state.alphabetOptions[i].status = "displayed";
-          }, 2000);
+          }, 1000);
         }
       }
       // Add guessed letter to array.
@@ -282,7 +282,9 @@ export default new Vuex.Store({
       commit("setStage", option);
       // Reset letter booleans.
       Object.values(this.state.alphabetOptions).forEach(
-        (alphabetOptions) => (alphabetOptions.status = "")
+        (alphabetOptions) => (
+          (alphabetOptions.status = ""), (alphabetOptions.chosen = false)
+        )
       );
       // Reset to false for next game.
       commit("setButtonSelected", false);

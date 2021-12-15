@@ -395,6 +395,7 @@
         />
       </defs>
     </svg>
+    <button class="btn badge count" :data-badge="`${attempts}`">Lives</button>
   </div>
 </template>
 
@@ -429,6 +430,18 @@ export default {
   width: 60vw;
   margin: auto;
 } */
+.btn.badge.count {
+  height: auto;
+  padding: 0.1rem;
+  font-weight: bold;
+  color: #2c3e50;
+  border-color: #2c3e50;
+}
+
+.badge:not([data-badge])::after,
+.badge[data-badge]::after {
+  background: #2c3e50;
+}
 .hangman {
   position: relative;
   height: 0;
@@ -445,7 +458,7 @@ export default {
   left: 0;
   top: 0;
 }
-/* Toggle state pn page mount? Simulate svg Hover in Vue */
+
 .hangman-svg:hover {
   stroke-dasharray: 6000;
   // stroke-dasharray: 5500;
