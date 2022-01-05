@@ -1,32 +1,23 @@
 <template>
   <div class="extra">
-    <h2>Hangman Results</h2>
-    <table class="table table-striped table-hover">
-      <thead>
-        <tr>
-          <th>Game Number</th>
-          <th>Word</th>
-          <th>Number of Guesses</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="active">
-          <td>#1</td>
-          <td>Animal</td>
-          <td>5</td>
-        </tr>
-        <tr class="">
-          <td>#2</td>
-          <td>Animal</td>
-          <td>3</td>
-        </tr>
-        <tr class="">
-          <td>#3</td>
-          <td>Animal</td>
-          <td>2</td>
-        </tr>
-      </tbody>
-    </table>
+    <h2>Details</h2>
+    <div class="tile">
+      <div class="tile-icon">
+        <div class="example-tile-icon">
+          <i class="icon icon-file centered"></i>
+        </div>
+      </div>
+      <div class="tile-content">
+        <p class="tile-title">The Avengers</p>
+        <p class="tile-subtitle">
+          Earth's Mightiest Heroes joined forces to take on threats that were
+          too big for any one hero to tackle...
+        </p>
+      </div>
+      <div class="tile-action">
+        <button class="btn btn-primary">Join</button>
+      </div>
+    </div>
   </div>
 </template>
 

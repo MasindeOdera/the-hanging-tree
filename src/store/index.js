@@ -236,12 +236,12 @@ export default new Vuex.Store({
       // Disable selected button.
       for (let i = 0; i < this.state.alphabetOptions.length; i++) {
         if (this.state.alphabetOptions[i].status === "loading") {
-          // Update letter status after 1 second.
+          // Update letter status after 0.25 second.
           setTimeout(() => {
             this.state.alphabetOptions[i].status = choice;
             this.state.alphabetOptions[i].chosen = true;
             this.state.alphabetOptions[i].status = "displayed";
-          }, 1000);
+          }, 250);
         }
       }
       // Add guessed letter to array.

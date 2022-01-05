@@ -3,6 +3,8 @@
     <div id="nav">
       <router-link to="/the-hanging-tree/">Home</router-link> |
       <router-link to="/the-hanging-tree/about">About</router-link> |
+      <router-link to="/the-hanging-tree/results">Results</router-link> |
+      <router-link to="/the-hanging-tree/settings">Settings</router-link> |
       <router-link to="/the-hanging-tree/extra" data-test-id="extra"
         >Extra</router-link
       >

@@ -4,7 +4,7 @@
     <Hangman />
     <MysteryWord />
     <Letters />
-    <LandingPage greeting="You are now Viewing Hangman" />
+    <LandingPage />
   </div>
 </template>
 

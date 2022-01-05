@@ -21,6 +21,16 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/About.vue"),
   },
   {
+    path: "/the-hanging-tree/results",
+    name: "Results",
+    component: () => import("../views/Results.vue"),
+  },
+  {
+    path: "/the-hanging-tree/settings",
+    name: "Settings",
+    component: () => import("../views/Settings.vue"),
+  },
+  {
     path: "/the-hanging-tree/extra",
     name: "Extra",
     component: () => import("../views/Extra.vue"),
