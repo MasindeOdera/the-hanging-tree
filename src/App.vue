@@ -128,7 +128,7 @@ body {
           position: absolute;
           color: #00bfa6;
           font-weight: bold;
-          font-size: 0.75em;
+          font-size: 1em;
           letter-spacing: 0.05em;
           transition: 0.5s;
           opacity: 0;
