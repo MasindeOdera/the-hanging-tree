@@ -110,13 +110,18 @@ body {
           position: relative;
           display: block;
           height: initial;
-          line-height: 60px;
           text-indent: unset;
-          line-height: 75px;
+          line-height: 80px;
           font-size: 1em;
           text-align: center;
           transition: 0.5s;
           color: #000;
+          width: initial;
+
+          ion-icon.md.hydrated {
+            width: 1.6em;
+            height: 1.6em;
+          }
         }
 
         .text {
@@ -134,8 +139,7 @@ body {
       a:hover,
       a:active,
       a:focus {
-        color: transparent !important;
-        outline: none !important;
+        box-shadow: none;
       }
     }
 
@@ -147,13 +151,6 @@ body {
       a .text {
         opacity: 1;
         transform: translateY(10px);
-      }
-
-      a:hover,
-      a:active,
-      a:focus {
-        color: transparent !important;
-        outline: none !important;
       }
     }
 

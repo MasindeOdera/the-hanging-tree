@@ -1,6 +1,7 @@
 <template>
   <div class="results">
     <h2>Hangman Results</h2>
+    <h4>(Coming soon)</h4>
     <table class="table table-striped table-hover">
       <thead>
         <tr>

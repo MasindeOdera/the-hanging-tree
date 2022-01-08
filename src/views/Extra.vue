@@ -1,21 +1,26 @@
 <template>
   <div class="extra">
-    <h2>Details</h2>
-    <div class="tile">
-      <div class="tile-icon">
-        <div class="example-tile-icon">
-          <i class="icon icon-file centered"></i>
+    <h4>Fancy Placeholder</h4>
+    <div class="docs-demo columns">
+      <div class="column col-12">
+        <div class="viewer-360">
+          <input
+            class="viewer-slider slider"
+            type="range"
+            min="1"
+            max="36"
+            value="36"
+            oninput="this.setAttribute('value', this.value);"
+          />
+          <figure
+            class="viewer-image"
+            style="
+              background-image: url('https://i.loli.net/2018/11/25/5bfa45b4b3f27.jpg');
+              padding-bottom: 37.5%;
+              width: 100%;
+            "
+          ></figure>
         </div>
-      </div>
-      <div class="tile-content">
-        <p class="tile-title">The Avengers</p>
-        <p class="tile-subtitle">
-          Earth's Mightiest Heroes joined forces to take on threats that were
-          too big for any one hero to tackle...
-        </p>
-      </div>
-      <div class="tile-action">
-        <button class="btn btn-primary">Join</button>
       </div>
     </div>
   </div>
