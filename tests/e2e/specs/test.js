@@ -3,6 +3,6 @@
 describe("My First Test", () => {
   it("Visits the app root url", () => {
     cy.visit("/");
-    cy.should("have.class", "hangman");
+    cy.get(".home").find(".hangman");
   });
 });
