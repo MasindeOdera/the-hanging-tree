@@ -213,4 +213,10 @@ body {
     }
   }
 }
+
+@media only screen and (max-width: 414px) {
+  .navigation {
+    width: 340px;
+  }
+}
 </style>
