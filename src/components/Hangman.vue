@@ -442,7 +442,6 @@ export default {
     line-height: 0.2rem;
   }
 }
-
 .badge:not([data-badge])::after,
 .badge[data-badge]::after {
   background: #2c3e50;
@@ -455,7 +454,6 @@ export default {
   padding-bottom: 50%;
   margin: auto;
 }
-
 .hangman-svg {
   position: absolute;
   height: 100%;
@@ -463,14 +461,12 @@ export default {
   left: 0;
   top: 0;
 }
-
 .hangman-svg:hover {
   stroke-dasharray: 6000;
   // stroke-dasharray: 5500;
   stroke-dashoffset: 5500;
   animation: animate-tree 2s linear forwards;
 }
-
 .loading {
   stroke-dasharray: 5500;
   stroke-dashoffset: 5500;
@@ -481,7 +477,6 @@ export default {
   stroke-width: 4;
   stroke: #2c3e50;
 }
-
 .animate-tree {
   stroke-dasharray: 5500;
   stroke-dashoffset: 5500;
@@ -562,11 +557,9 @@ export default {
   transform-origin: left;
   transform-box: fill-box;
 }
-
 .display {
   opacity: 1;
 }
-
 .fade {
   animation: fall 1.8s forwards ease-in-out !important; // This needs to overide the default animation.
 }
