@@ -22,7 +22,7 @@
     <button
       class="again"
       @click="replay()"
-      v-show="stage === 'stop' || length === 0"
+      v-show="stage === 'stop' || (stage === 'play' && length === 0)"
     >
       <b>Play again?</b>
     </button>
@@ -41,6 +41,7 @@ export default {
       };
     },
     beginGame() {
+      this.fetchLetters();
       this.startGame();
     },
     replay() {
@@ -58,9 +59,6 @@ export default {
       stage: "getStage",
       length: "getWordLength",
     }),
-  },
-  created() {
-    this.fetchLetters();
   },
 };
 </script>
