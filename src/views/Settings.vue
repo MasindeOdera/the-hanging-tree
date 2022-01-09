@@ -42,5 +42,6 @@ export default {
 <style lang="scss" scoped>
 .settings {
   margin: 3rem;
+  max-width: 800px;
 }
 </style>
