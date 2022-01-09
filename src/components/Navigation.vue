@@ -3,7 +3,15 @@
     <ul>
       <li class="list" :class="{ active: this.$route.name === 'Home' }">
         <router-link to="/the-hanging-tree/">
-          <span class="icon"> <ion-icon name="home-sharp"> </ion-icon></span>
+          <span class="unknown" v-show="this.$route.name === 'PageNotFound'">
+            <ion-icon name="warning-sharp"> </ion-icon>
+          </span>
+          <span
+            class="icon"
+            :class="{ space: this.$route.name === 'PageNotFound' }"
+          >
+            <ion-icon name="home-sharp"> </ion-icon
+          ></span>
           <span class="text">Home</span></router-link
         >
       </li>
@@ -88,6 +96,25 @@ export default {
           color: #42b983;
         }
 
+        .unknown {
+          position: relative;
+          display: block;
+          height: initial;
+          text-indent: unset;
+          line-height: initial !important;
+          font-size: 1em;
+          text-align: center;
+          transition: 0.5s;
+          color: #000;
+          width: initial;
+          transform: translateY(-20px);
+
+          ion-icon.md.hydrated {
+            width: 1.6em;
+            height: 1.6em;
+          }
+        }
+
         .icon {
           position: relative;
           display: block;
@@ -104,6 +131,10 @@ export default {
             width: 1.6em;
             height: 1.6em;
           }
+        }
+
+        .space {
+          transform: translateY(-20px);
         }
 
         .text {
