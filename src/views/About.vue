@@ -1,6 +1,6 @@
 <template>
   <div class="about">
-    <h1>This is an about page</h1>
-    <p>It has no real purpose...yet</p>
+    <h1>Project Details</h1>
+    <p>Coming soon...</p>
   </div>
 </template>
