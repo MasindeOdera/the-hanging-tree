@@ -260,9 +260,16 @@ export default new Vuex.Store({
         let option = this.state.status[2];
         commit("setStage", option);
       }
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 500);
+      // If mobile view, scroll up.
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+      ) {
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 500);
+      }
     },
     async startGame({ commit }) {
       commit("startGame", true);
