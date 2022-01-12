@@ -17,8 +17,20 @@
         <div class="panel-body">
           <div class="tile tile-centered">
             <div class="tile-content">
-              <div class="tile-title text-bold">Framework</div>
+              <div class="tile-title text-bold">JS Framework</div>
               <div class="tile-subtitle">Vue.js</div>
+            </div>
+          </div>
+          <div class="tile tile-centered">
+            <div class="tile-content">
+              <div class="tile-title text-bold">CSS Framework</div>
+              <div class="tile-subtitle">
+                <a
+                  href="https://picturepan2.github.io/spectre/index.html"
+                  target="_blank"
+                  >Spectre</a
+                >
+              </div>
             </div>
           </div>
           <div class="tile tile-centered">
