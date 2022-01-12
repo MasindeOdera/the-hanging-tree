@@ -84,6 +84,7 @@ export default {
     list-style-type: none;
     justify-content: center;
     transition: width 4s, height 4s;
+    cursor: default;
     li {
       width: 30px;
       padding: 0px 6px;

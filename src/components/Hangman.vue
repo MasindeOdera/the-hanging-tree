@@ -436,6 +436,7 @@ export default {
   font-weight: bold;
   color: #2c3e50;
   border-color: #2c3e50;
+  cursor: default;
   @media only screen and (max-width: 414px) {
     font-size: 0.6rem;
     height: 1.2rem;
