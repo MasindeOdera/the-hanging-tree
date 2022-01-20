@@ -276,9 +276,16 @@ export default new Vuex.Store({
       // Update game status to "play".
       let option = this.state.status[1];
       commit("setStage", option);
-      setTimeout(() => {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-      }, 500);
+      // If mobile view, scroll up.
+      if (
+        /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+          navigator.userAgent
+        )
+      ) {
+        setTimeout(() => {
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        }, 500);
+      }
     },
     async replayGame({ commit }) {
       commit("setAttempts", 7);

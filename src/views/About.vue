@@ -1,7 +1,7 @@
 <template>
   <div class="about">
     <div class="column col-xs-12">
-      <div class="panel">
+      <div class="panel menu">
         <div class="panel-header text-center">
           <figure class="avatar avatar-lg">
             <img src="../assets/profile.png" alt="Avatar" />
@@ -73,11 +73,9 @@ export default {
   .column {
     margin: 3rem auto;
     width: 70%;
-    .panel {
-      border-color: #42b983 !important;
-      .tab {
-        border-color: #42b983 !important;
-      }
+    a {
+      color: #42b983 !important;
+      font-weight: bold;
     }
   }
 }
