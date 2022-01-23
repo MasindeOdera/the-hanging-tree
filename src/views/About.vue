@@ -9,11 +9,7 @@
           <div class="panel-title h4 mt-10">Masinde Odera</div>
           <div class="panel-subtitle">The Hanging Tree</div>
         </div>
-        <nav class="panel-nav">
-          <ul class="tab tab-block">
-            <li class="tab-item active">Setup</li>
-          </ul>
-        </nav>
+        <li class="divider" data-content="Setup"></li>
         <div class="panel-body">
           <div class="tile tile-centered">
             <div class="tile-content">
@@ -53,6 +49,10 @@
                 <a href="https://undraw.co/illustrations" target="_blank"
                   >undraw</a
                 >
+              </div>
+              <div class="tile-subtitle">
+                Icons from
+                <a href="https://ionic.io/ionicons" target="_blank">ionicons</a>
               </div>
             </div>
           </div>
