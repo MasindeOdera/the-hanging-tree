@@ -1,30 +1,24 @@
 <template>
   <div class="results">
     <h2>Hangman Results</h2>
-    <h4>(Coming soon)</h4>
-    <table class="table table-striped table-hover">
+    <div class="empty" v-show="results.length < 1">
+      <p class="empty-title h4">
+        Complete a game, then click "Play again?" to view result.
+      </p>
+    </div>
+    <table class="table table-striped table-hover" v-show="results.length > 0">
       <thead>
         <tr>
-          <th>Game Number</th>
+          <th>Game N<sup>o</sup></th>
           <th>Word</th>
-          <th>Number of Guesses</th>
+          <th>N<sup>o</sup> Guesses</th>
         </tr>
       </thead>
       <tbody>
-        <tr class="active">
-          <td>#1</td>
-          <td>Animal</td>
-          <td>5</td>
-        </tr>
-        <tr class="">
-          <td>#2</td>
-          <td>Animal</td>
-          <td>3</td>
-        </tr>
-        <tr class="">
-          <td>#3</td>
-          <td>Animal</td>
-          <td>2</td>
+        <tr class="" v-for="(res, index) in results" :key="index">
+          <td>{{ index + 1 }}</td>
+          <td>{{ res[0] }}</td>
+          <td>{{ 7 - res[1] }}</td>
         </tr>
       </tbody>
     </table>
@@ -32,8 +26,20 @@
 </template>
 
 <script>
+import { mapGetters } from "vuex";
 export default {
   name: "Results",
+  computed: {
+    ...mapGetters({
+      guessed: "getGuess",
+      mysteryWord: "getMysteryWord",
+      start: "getGame",
+      attempts: "getAttempts",
+      stage: "getStage",
+      length: "getWordLength",
+      results: "getResults",
+    }),
+  },
 };
 </script>
 
@@ -41,5 +47,9 @@ export default {
 .results {
   margin: 3rem auto;
   width: 70%;
+  text-align: center;
+  .table {
+    text-align: center;
+  }
 }
 </style>

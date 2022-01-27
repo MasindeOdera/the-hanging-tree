@@ -34,7 +34,7 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "MysteryWord",
   methods: {
-    ...mapActions(["fetchLetters", "startGame", "replayGame"]),
+    ...mapActions(["fetchLetters", "startGame", "replayGame", "saveResults"]),
     showLetter: function (word) {
       return {
         reveal: this.guessed.includes(word),
@@ -45,6 +45,7 @@ export default {
       this.startGame();
     },
     replay() {
+      this.saveResults();
       this.replayGame();
       this.fetchLetters();
       this.startGame();

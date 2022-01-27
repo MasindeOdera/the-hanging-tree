@@ -180,6 +180,7 @@ export default new Vuex.Store({
     status: ["start", "play", "stop"],
     stage: "start",
     wordLength: 0,
+    results: [],
   },
   mutations: {
     //syncronous
@@ -218,6 +219,9 @@ export default new Vuex.Store({
     },
     toggleLoading(state, payload) {
       state.alphabetOptions = payload;
+    },
+    updateResults(state, payload) {
+      state.results.push(payload);
     },
   },
   actions: {
@@ -307,6 +311,9 @@ export default new Vuex.Store({
         document.getElementByClassName("count").scrollIntoView();
       }, 500);
     },
+    async saveResults({ commit }) {
+      commit("updateResults", [this.state.mysteryWord, this.state.attempts]);
+    },
   },
   modules: {},
   getters: {
@@ -320,5 +327,6 @@ export default new Vuex.Store({
     getStage: (state) => state.stage,
     getWordLength: (state) => state.wordLength,
     getIncorrectChoice: (state) => state.incorrectChoice,
+    getResults: (state) => state.results,
   },
 });
