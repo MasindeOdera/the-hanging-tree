@@ -1,6 +1,6 @@
 <template>
   <div class="results">
-    <h2>Hangman Results</h2>
+    <h2>No noose is good noose</h2>
     <div class="empty" v-show="results.length < 1">
       <p class="empty-title h4">
         Result displayed once the following game has started.
