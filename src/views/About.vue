@@ -14,7 +14,9 @@
           <div class="tile tile-centered">
             <div class="tile-content">
               <div class="tile-title text-bold">JS Framework</div>
-              <div class="tile-subtitle">Vue.js</div>
+              <div class="tile-subtitle">
+                <a href="https://vuejs.org/" target="_blank">Vue.js</a>
+              </div>
             </div>
           </div>
           <div class="tile tile-centered">
@@ -32,13 +34,17 @@
           <div class="tile tile-centered">
             <div class="tile-content">
               <div class="tile-title text-bold">Unit Tests</div>
-              <div class="tile-subtitle">Jest</div>
+              <div class="tile-subtitle">
+                <a href="https://jestjs.io/" target="_blank">Jest</a>
+              </div>
             </div>
           </div>
           <div class="tile tile-centered">
             <div class="tile-content">
               <div class="tile-title text-bold">End-to-End Test</div>
-              <div class="tile-subtitle">Cypress</div>
+              <div class="tile-subtitle">
+                <a href="https://www.cypress.io/" target="_blank">Cypress</a>
+              </div>
             </div>
           </div>
           <div class="tile tile-centered">

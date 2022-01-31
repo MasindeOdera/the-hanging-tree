@@ -24,7 +24,7 @@
             :class="['form-icon', theme === 'dark' ? 'dark' : 'light']"
             @click="toggleTheme"
           ></i>
-          Toggle light/dark mode
+          Toggle theme
         </label>
         <div class="menu-badge">
           <label class="label label-primary">{{ theme }}</label>
