@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div id="app" :class="{ dark: theme === 'dark' }">
     <Navigation />
     <transition name="fade" mode="out-in">
       <router-view />
@@ -9,11 +9,20 @@
 
 <script>
 import Navigation from "@/components/Navigation.vue";
+import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "App",
   components: {
     Navigation,
+  },
+  methods: {
+    ...mapActions(["updateTheme"]),
+  },
+  computed: {
+    ...mapGetters({
+      theme: "getTheme",
+    }),
   },
 };
 </script>
@@ -21,6 +30,10 @@ export default {
 <style lang="scss">
 body {
   background-color: #ccf2ff;
+}
+body.dark,
+.dark {
+  background-color: #132639;
 }
 
 #app {

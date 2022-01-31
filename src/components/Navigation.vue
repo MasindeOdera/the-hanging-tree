@@ -47,14 +47,23 @@
           <span class="text">Extra</span></router-link
         >
       </li>
-      <div class="indicator"></div>
+      <div :class="['indicator', { dark: theme === 'dark' }]"></div>
     </ul>
   </div>
 </template>
 
 <script>
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Navigation",
+  methods: {
+    ...mapActions(["updateTheme"]),
+  },
+  computed: {
+    ...mapGetters({
+      theme: "getTheme",
+    }),
+  },
 };
 </script>
 
@@ -198,6 +207,10 @@ export default {
       transition: 0.5s;
     }
 
+    .indicator.dark {
+      border: 6px solid #132639;
+    }
+
     .indicator:before {
       content: "";
       position: absolute;
@@ -210,6 +223,10 @@ export default {
       box-shadow: 1px -10px 0 0 #ccf2ff;
     }
 
+    .indicator.dark:before {
+      box-shadow: 1px -10px 0 0 #132639;
+    }
+
     .indicator:after {
       content: "";
       position: absolute;
@@ -220,6 +237,10 @@ export default {
       background: transparent;
       border-top-left-radius: 20px;
       box-shadow: -1px -10px 0 0 #ccf2ff;
+    }
+
+    .indicator.dark:after {
+      box-shadow: -1px -10px 0 0 #132639;
     }
   }
 }

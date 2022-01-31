@@ -181,6 +181,7 @@ export default new Vuex.Store({
     stage: "start",
     wordLength: 0,
     results: [],
+    theme: "light",
   },
   mutations: {
     //syncronous
@@ -222,6 +223,9 @@ export default new Vuex.Store({
     },
     updateResults(state, payload) {
       state.results.push(payload);
+    },
+    toggleTheme(state, payload) {
+      state.theme = payload;
     },
   },
   actions: {
@@ -314,6 +318,15 @@ export default new Vuex.Store({
     async saveResults({ commit }) {
       commit("updateResults", [this.state.mysteryWord, this.state.attempts]);
     },
+    async updateTheme({ commit }) {
+      if (this.state.theme === "light") {
+        commit("toggleTheme", "dark");
+        document.querySelector("body").classList.add("dark");
+      } else {
+        commit("toggleTheme", "light");
+        document.querySelector("body").classList.remove("dark");
+      }
+    },
   },
   modules: {},
   getters: {
@@ -328,5 +341,6 @@ export default new Vuex.Store({
     getWordLength: (state) => state.wordLength,
     getIncorrectChoice: (state) => state.incorrectChoice,
     getResults: (state) => state.results,
+    getTheme: (state) => state.theme,
   },
 });
