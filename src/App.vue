@@ -4,17 +4,20 @@
     <transition name="fade" mode="out-in">
       <router-view />
     </transition>
+    <Soundtrack />
   </div>
 </template>
 
 <script>
 import Navigation from "@/components/Navigation.vue";
+import Soundtrack from "@/components/Soundtrack.vue";
 import { mapActions, mapGetters } from "vuex";
 
 export default {
   name: "App",
   components: {
     Navigation,
+    Soundtrack,
   },
   methods: {
     ...mapActions(["updateTheme"]),
@@ -30,10 +33,16 @@ export default {
 <style lang="scss">
 body {
   background-color: #ccf2ff;
+  -webkit-transition: background-color 160ms linear;
+  -ms-transition: background-color 160ms linear;
+  transition: background-color 160ms linear;
 }
 body.dark,
 .dark {
   background-color: #132639;
+  -webkit-transition: background-color 60ms ease-out;
+  -ms-transition: background-color 60ms ease-out;
+  transition: background-color 60ms ease-out;
 }
 
 #app {

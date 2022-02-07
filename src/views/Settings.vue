@@ -1,6 +1,6 @@
 <template>
   <div class="settings">
-    <ul class="menu">
+    <ul :class="['menu', { dark: theme === 'dark' }]">
       <li class="divider" data-content="Configuration"></li>
       <li class="menu-item">
         <a href="#"> <i class="icon icon-downward"></i> Coming soon </a>
@@ -24,10 +24,24 @@
             :class="['form-icon', theme === 'dark' ? 'dark' : 'light']"
             @click="toggleTheme"
           ></i>
-          Toggle theme
+          Display Mode
         </label>
         <div class="menu-badge">
           <label class="label label-primary">{{ theme }}</label>
+        </div>
+      </li>
+      <li class="menu-item">
+        <label class="form-switch">
+          <input type="checkbox" v-model="checked" /><i
+            :class="['form-icon', music === true ? 'dark' : 'light']"
+            @click="toggleMusic"
+          ></i>
+          Theme Song
+        </label>
+        <div class="menu-badge">
+          <label class="label label-primary">{{
+            music === true ? "On" : "Off"
+          }}</label>
         </div>
       </li>
       <li class="divider"></li>
@@ -46,14 +60,18 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Settings",
   methods: {
-    ...mapActions(["updateTheme"]),
+    ...mapActions(["updateTheme", "toggleSoundtrack"]),
     toggleTheme() {
       this.updateTheme();
+    },
+    toggleMusic() {
+      this.toggleSoundtrack(!this.music);
     },
   },
   computed: {
     ...mapGetters({
       theme: "getTheme",
+      music: "getSoundtrack",
     }),
   },
 };
@@ -63,6 +81,9 @@ export default {
 .settings {
   margin: 3rem auto;
   width: 70%;
+  .menu.dark {
+    background: #d9d9d9;
+  }
   .menu {
     .menu-item {
       .form-checkbox input:checked + .form-icon.light-fill {

@@ -182,6 +182,7 @@ export default new Vuex.Store({
     wordLength: 0,
     results: [],
     theme: "light",
+    isPlaying: false,
   },
   mutations: {
     //syncronous
@@ -226,6 +227,9 @@ export default new Vuex.Store({
     },
     toggleTheme(state, payload) {
       state.theme = payload;
+    },
+    updatePlaying(state, payload) {
+      state.isPlaying = payload;
     },
   },
   actions: {
@@ -327,6 +331,9 @@ export default new Vuex.Store({
         document.querySelector("body").classList.remove("dark");
       }
     },
+    async toggleSoundtrack({ commit }, status) {
+      commit("updatePlaying", status);
+    },
   },
   modules: {},
   getters: {
@@ -342,5 +349,6 @@ export default new Vuex.Store({
     getIncorrectChoice: (state) => state.incorrectChoice,
     getResults: (state) => state.results,
     getTheme: (state) => state.theme,
+    getSoundtrack: (state) => state.isPlaying,
   },
 });
