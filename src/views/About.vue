@@ -106,9 +106,14 @@ export default {
   .column {
     margin: 3rem auto;
     width: 70%;
-    a {
-      color: #42b983 !important;
-      font-weight: bold;
+    .menu {
+      .divider {
+        border-top: 0.05rem solid #bcc3ce !important;
+      }
+      a {
+        color: #42b983 !important;
+        font-weight: bold;
+      }
     }
   }
 }

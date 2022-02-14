@@ -71,9 +71,14 @@ export default {
 .dark {
   .navigation {
     background: #d9d9d9 !important;
-    ul li a {
-      .text {
-        color: #008b8b !important;
+    ul {
+      li a {
+        .text {
+          color: #008b8b !important;
+        }
+      }
+      .indicator {
+        background: #008b8b !important;
       }
     }
   }

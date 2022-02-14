@@ -105,6 +105,9 @@ export default {
     }
   }
   .menu {
+    .divider {
+      border-top: 0.05rem solid #bcc3ce !important;
+    }
     .menu-item {
       .form-checkbox input:checked + .form-icon.light-fill {
         background: #42b983 !important;
