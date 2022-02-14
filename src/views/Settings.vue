@@ -83,6 +83,26 @@ export default {
   width: 70%;
   .menu.dark {
     background: #d9d9d9;
+    .divider {
+      border-top: 0.05rem solid #132639 !important;
+    }
+    .divider[data-content]::after {
+      background: #d9d9d9 !important;
+      color: #132639 !important;
+    }
+    .menu-item {
+      .form-switch .form-icon.light {
+        background: #008b8b !important;
+      }
+      a {
+        color: #008b8b !important;
+      }
+      .menu-badge {
+        .label.label-primary {
+          background: #008b8b !important;
+        }
+      }
+    }
   }
   .menu {
     .menu-item {

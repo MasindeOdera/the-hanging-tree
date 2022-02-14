@@ -68,6 +68,16 @@ export default {
 </script>
 
 <style lang="scss">
+.dark {
+  .navigation {
+    background: #d9d9d9 !important;
+    ul li a {
+      .text {
+        color: #008b8b !important;
+      }
+    }
+  }
+}
 .navigation {
   width: 400px;
   height: 70px;
@@ -155,6 +165,10 @@ export default {
           transition: 0.5s;
           opacity: 0;
           transform: translateY(20px);
+        }
+        .text .darker {
+          color: #008b8b !important;
+          background-color: #d9d9d9 !important;
         }
       }
 

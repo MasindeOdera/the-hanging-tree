@@ -52,4 +52,13 @@ export default {
     text-align: center;
   }
 }
+.dark .results {
+  color: #008b8b;
+  .table.table-striped tbody tr:nth-of-type(odd) {
+    background: #d9d9d9 !important;
+  }
+  .table.table-hover tbody tr:hover {
+    background: #bcc3ce !important;
+  }
+}
 </style>

@@ -65,6 +65,14 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.dark .home .mystery {
+  li {
+    background: #d9d9d9;
+    border-bottom: #d9d9d9;
+    border-bottom-style: solid;
+    color: #d9d9d9;
+  }
+}
 .mystery {
   margin: auto;
   width: 80%;
@@ -98,7 +106,7 @@ export default {
       font-feature-settings: normal;
     }
     .reveal {
-      background: transparent;
+      background: transparent !important;
       transition: width 4s, height 4s;
     }
   }

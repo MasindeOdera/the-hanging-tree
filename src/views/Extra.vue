@@ -36,4 +36,7 @@ export default {
 .extra {
   margin: 3rem;
 }
+.dark .extra {
+  color: #008b8b;
+}
 </style>

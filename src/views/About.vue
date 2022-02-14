@@ -83,6 +83,25 @@ export default {
 </script>
 
 <style lang="scss">
+.dark {
+  .about {
+    .column {
+      .menu {
+        background: #d9d9d9 !important;
+        .divider {
+          border-top: 0.05rem solid #132639 !important;
+        }
+        .divider[data-content]::after {
+          background: #d9d9d9 !important;
+          color: #132639 !important;
+        }
+        a {
+          color: #008b8b !important;
+        }
+      }
+    }
+  }
+}
 .about {
   .column {
     margin: 3rem auto;
