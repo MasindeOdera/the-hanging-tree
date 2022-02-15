@@ -231,6 +231,53 @@ export default new Vuex.Store({
     updatePlaying(state, payload) {
       state.isPlaying = payload;
     },
+    initialiseStore(state) {
+      // Persist theme.
+      if (localStorage.getItem("theme")) {
+        state.theme = localStorage.theme;
+        if (state.theme === "dark") {
+          document.querySelector("body").classList.add("dark");
+        } else {
+          document.querySelector("body").classList.remove("dark");
+        }
+      }
+      // Persist music.
+      if (localStorage.getItem("isPlayin")) {
+        state.isPlaying = localStorage.isPlaying;
+      }
+      // Persist word.
+      if (localStorage.getItem("setMysteryWord")) {
+        state.mysteryWord = localStorage.setMysteryWord;
+      }
+      // Persist stage.
+      if (localStorage.getItem("setStage")) {
+        state.stage = localStorage.setStage;
+      }
+      // Persist start game.
+      if (localStorage.getItem("startGame")) {
+        state.game = localStorage.startGame;
+      }
+      // Persist attempts.
+      if (localStorage.getItem("attempts")) {
+        state.attempts = localStorage.attempts;
+      }
+      // Persist guessed letters.
+      if (localStorage.getItem("guessed")) {
+        state.guess = localStorage.guessed;
+      }
+      // Persist length of word.
+      if (localStorage.getItem("length")) {
+        state.wordLength = localStorage.length;
+      }
+      // Persist alphabet letters used.
+      if (localStorage.getItem("alphabetOptions")) {
+        state.alphabetOptions = JSON.parse(localStorage["alphabetOptions"]);
+      }
+      // Persist results generated.
+      if (localStorage.getItem("updateResults")) {
+        state.results = JSON.parse(localStorage["updateResults"]);
+      }
+    },
   },
   actions: {
     // Asyncronous
@@ -240,6 +287,7 @@ export default new Vuex.Store({
           Math.floor(Math.random() * this.state.animals.length)
         ];
       commit("setMysteryWord", animal);
+      localStorage.setItem("setMysteryWord", animal);
       commit("reduceWordLength", animal.length);
     },
     // Create an action for loading.
@@ -256,21 +304,30 @@ export default new Vuex.Store({
           }, 250);
         }
       }
+      // This ensures that the loading state has updated to display before saving.
+      setTimeout(() => {
+        let stringifyAlphabet = JSON.stringify(this.state.alphabetOptions);
+        localStorage.setItem("alphabetOptions", stringifyAlphabet);
+      }, 250);
       // Add guessed letter to array.
       if (this.state.mysteryWord.includes(choice)) {
         this.state.guess.push(choice);
+        localStorage.setItem("guessed", this.state.guess);
         let count = this.state.mysteryWord.split(choice).length - 1;
         let reduced = this.state.wordLength - count;
         commit("reduceWordLength", reduced);
+        localStorage.setItem("length", reduced);
       } else {
         this.state.incorrectChoice.push(choice);
         commit("reduceAttempt");
+        localStorage.setItem("attempts", this.state.attempts);
       }
       commit("setButtonSelected", true);
       // Update game status to "stop".
       if (this.state.attempts === 0) {
         let option = this.state.status[2];
         commit("setStage", option);
+        localStorage.setItem("setStage", option);
       }
       // If mobile view, scroll up.
       if (
@@ -285,9 +342,11 @@ export default new Vuex.Store({
     },
     async startGame({ commit }) {
       commit("startGame", true);
+      localStorage.setItem("startGame", true);
       // Update game status to "play".
       let option = this.state.status[1];
       commit("setStage", option);
+      localStorage.setItem("setStage", option);
       // If mobile view, scroll up.
       if (
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -301,17 +360,23 @@ export default new Vuex.Store({
     },
     async replayGame({ commit }) {
       commit("setAttempts", 7);
+      localStorage.setItem("attempts", 7);
       commit("setGuess", []);
+      localStorage.setItem("guessed", []);
       commit("setIncorrectChoice", []);
+      localStorage.setItem("incorrectChoice", []);
       // Update game status to "start".
       let option = this.state.status[0];
       commit("setStage", option);
+      localStorage.setItem("setStage", option);
       // Reset letter booleans.
       Object.values(this.state.alphabetOptions).forEach(
         (alphabetOptions) => (
           (alphabetOptions.status = ""), (alphabetOptions.chosen = false)
         )
       );
+      let stringifyAlphabet = JSON.stringify(this.state.alphabetOptions);
+      localStorage.setItem("alphabetOptions", stringifyAlphabet);
       // Reset to false for next game.
       commit("setButtonSelected", false);
       setTimeout(() => {
@@ -321,18 +386,23 @@ export default new Vuex.Store({
     },
     async saveResults({ commit }) {
       commit("updateResults", [this.state.mysteryWord, this.state.attempts]);
+      let stringifyResults = JSON.stringify(this.state.results);
+      localStorage.setItem("updateResults", stringifyResults);
     },
     async updateTheme({ commit }) {
       if (this.state.theme === "light") {
         commit("toggleTheme", "dark");
         document.querySelector("body").classList.add("dark");
+        localStorage.setItem("theme", "dark");
       } else {
         commit("toggleTheme", "light");
         document.querySelector("body").classList.remove("dark");
+        localStorage.setItem("theme", "light");
       }
     },
     async toggleSoundtrack({ commit }, status) {
       commit("updatePlaying", status);
+      localStorage.setItem("isPlaying", status);
     },
   },
   modules: {},
