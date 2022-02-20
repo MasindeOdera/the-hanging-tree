@@ -48,6 +48,7 @@ export default {
   margin: 3rem auto;
   width: 70%;
   text-align: center;
+  cursor: default;
   .table {
     text-align: center;
   }

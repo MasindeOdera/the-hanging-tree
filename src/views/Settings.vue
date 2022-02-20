@@ -20,7 +20,7 @@
       </li>
       <li class="menu-item">
         <label class="form-switch">
-          <input type="checkbox" v-model="checked" /><i
+          <input type="checkbox" /><i
             :class="['form-icon', theme === 'dark' ? 'dark' : 'light']"
             @click="toggleTheme"
           ></i>
@@ -32,7 +32,7 @@
       </li>
       <li class="menu-item">
         <label class="form-switch">
-          <input type="checkbox" v-model="checked" /><i
+          <input type="checkbox" /><i
             :class="['form-icon', music === true ? 'dark' : 'light']"
             @click="toggleMusic"
           ></i>
@@ -65,7 +65,10 @@ export default {
       this.updateTheme();
     },
     toggleMusic() {
-      this.toggleSoundtrack(!this.music);
+      // Toggle state of music.
+      this.music === true
+        ? this.toggleSoundtrack(false)
+        : this.toggleSoundtrack(true);
     },
   },
   computed: {
@@ -81,6 +84,7 @@ export default {
 .settings {
   margin: 3rem auto;
   width: 70%;
+  cursor: default;
   .menu.dark {
     background: #d9d9d9;
     .divider {

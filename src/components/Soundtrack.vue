@@ -6,7 +6,7 @@
       src="../assets/James_Newton_Howard_Ft._Jennifer_Lawrence-The_Hanging_Tree-320k.mp3"
       :title="this.music"
     ></audio>
-    <button v-on:click="play" type="button" hidden>Theme</button>
+    <button class="play" v-on:click="play" type="play" hidden>Theme</button>
   </div>
 </template>
 
@@ -33,9 +33,15 @@ export default {
     music(newValue, oldValue) {
       console.log(`Updated Music toggle from ${oldValue} to ${newValue}`);
       if (newValue) {
-        this.play();
+        this.play(true);
+        console.log(
+          `On true updated Music toggle from ${oldValue} to ${newValue}`
+        );
       } else {
-        this.play();
+        this.play(false);
+        console.log(
+          `On false, updated Music toggle from ${oldValue} to ${newValue}`
+        );
       }
     },
   },

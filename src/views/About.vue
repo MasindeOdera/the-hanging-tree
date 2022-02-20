@@ -103,6 +103,7 @@ export default {
   }
 }
 .about {
+  cursor: default;
   .column {
     margin: 3rem auto;
     width: 70%;

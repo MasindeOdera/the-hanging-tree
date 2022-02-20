@@ -241,10 +241,6 @@ export default new Vuex.Store({
           document.querySelector("body").classList.remove("dark");
         }
       }
-      // Persist music.
-      if (localStorage.getItem("isPlayin")) {
-        state.isPlaying = localStorage.isPlaying;
-      }
       // Persist word.
       if (localStorage.getItem("setMysteryWord")) {
         state.mysteryWord = localStorage.setMysteryWord;
@@ -402,7 +398,6 @@ export default new Vuex.Store({
     },
     async toggleSoundtrack({ commit }, status) {
       commit("updatePlaying", status);
-      localStorage.setItem("isPlaying", status);
     },
   },
   modules: {},
