@@ -171,6 +171,23 @@ export default new Vuex.Store({
       "squirrel",
       "deer",
     ],
+    beers: [
+      "Brouwerij Troost",
+      "Oedipus",
+      "Brouwerij ‘t IJ",
+      "Brouwerij De Prael",
+      "Bierfabrik",
+      "Walhalla",
+      "Bruut Bier",
+      "Butcher’s Tears",
+      "De Bekeerde Suster",
+      "Proeflokaal Arendsnest",
+      "In ‘t Aepjen",
+      "Gollem",
+      "Delirium",
+      "Craft’n Draft",
+      "In de Wildeman",
+    ],
     mysteryWord: "",
     buttonSelected: false,
     guess: [],
@@ -183,6 +200,7 @@ export default new Vuex.Store({
     results: [],
     theme: "light",
     isPlaying: false,
+    guessOption: "animal",
   },
   mutations: {
     //syncronous
@@ -231,6 +249,9 @@ export default new Vuex.Store({
     updatePlaying(state, payload) {
       state.isPlaying = payload;
     },
+    toggleGuessOption(state, payload) {
+      state.guessOption = payload;
+    },
     initialiseStore(state) {
       // Persist theme.
       if (localStorage.getItem("theme")) {
@@ -272,6 +293,10 @@ export default new Vuex.Store({
       // Persist results generated.
       if (localStorage.getItem("updateResults")) {
         state.results = JSON.parse(localStorage["updateResults"]);
+      }
+      // Persist theme.
+      if (localStorage.getItem("guessOption")) {
+        state.guessOption = localStorage.guessOption;
       }
     },
   },
@@ -399,6 +424,15 @@ export default new Vuex.Store({
     async toggleSoundtrack({ commit }, status) {
       commit("updatePlaying", status);
     },
+    async updateGuessOption({ commit }) {
+      if (this.state.guessOption === "animal") {
+        commit("toggleGuessOption", "beer");
+        localStorage.setItem("guessOption", "beer");
+      } else {
+        commit("toggleGuessOption", "animal");
+        localStorage.setItem("guessOption", "animal");
+      }
+    },
   },
   modules: {},
   getters: {
@@ -415,5 +449,6 @@ export default new Vuex.Store({
     getResults: (state) => state.results,
     getTheme: (state) => state.theme,
     getSoundtrack: (state) => state.isPlaying,
+    getGuessOption: (state) => state.guessOption,
   },
 });

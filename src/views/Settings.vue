@@ -2,42 +2,52 @@
   <div class="settings">
     <ul :class="['menu', { dark: theme === 'dark' }]">
       <li class="divider" data-content="Configuration"></li>
-      <li class="menu-item">
-        <a href="#"> <i class="icon icon-downward"></i> Coming soon </a>
+      <li class="menu-item topic">
+        <a href="#">Current guess topic <i class="icon icon-downward"></i></a>
       </li>
       <li class="menu-item">
-        <label class="form-checkbox">
-          <input type="checkbox" />
-          <i
-            :class="[
-              'form-icon',
-              theme === 'dark' ? 'dark-fill' : 'light-fill',
-            ]"
-          ></i>
-          Use beer names from
-          <a href="https://www.beerwulf.com/">Beerwulf.com</a>
-        </label>
+        <div>
+          <label class="form-switch">
+            <input type="checkbox" /><i
+              :class="['form-icon', guess === 'animal' ? 'dark' : 'light']"
+              @click="toggleGuessOption"
+            ></i>
+          </label>
+        </div>
+        <div>
+          Use Craft Beer & Microbreweries from
+          <a href="https://lostinfermentation.com/craft-beer-amsterdam/"
+            >Lost In Fermentation</a
+          >
+        </div>
+        <div class="menu-badge">
+          <label class="label label-primary">{{ guess }}</label>
+        </div>
       </li>
       <li class="menu-item">
-        <label class="form-switch">
-          <input type="checkbox" /><i
-            :class="['form-icon', theme === 'dark' ? 'dark' : 'light']"
-            @click="toggleTheme"
-          ></i>
-          Display Mode
-        </label>
+        <div>
+          <label class="form-switch">
+            <input type="checkbox" /><i
+              :class="['form-icon', theme === 'dark' ? 'dark' : 'light']"
+              @click="toggleTheme"
+            ></i>
+          </label>
+        </div>
+        <div>Display Mode</div>
         <div class="menu-badge">
           <label class="label label-primary">{{ theme }}</label>
         </div>
       </li>
       <li class="menu-item">
-        <label class="form-switch">
-          <input type="checkbox" /><i
-            :class="['form-icon', music === true ? 'dark' : 'light']"
-            @click="toggleMusic"
-          ></i>
-          Theme Song
-        </label>
+        <div>
+          <label class="form-switch">
+            <input type="checkbox" /><i
+              :class="['form-icon', music === true ? 'dark' : 'light']"
+              @click="toggleMusic"
+            ></i>
+          </label>
+        </div>
+        <div>Theme Song</div>
         <div class="menu-badge">
           <label class="label label-primary">{{
             music === true ? "On" : "Off"
@@ -60,7 +70,7 @@ import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Settings",
   methods: {
-    ...mapActions(["updateTheme", "toggleSoundtrack"]),
+    ...mapActions(["updateTheme", "toggleSoundtrack", "updateGuessOption"]),
     toggleTheme() {
       this.updateTheme();
     },
@@ -70,11 +80,15 @@ export default {
         ? this.toggleSoundtrack(false)
         : this.toggleSoundtrack(true);
     },
+    toggleGuessOption() {
+      this.updateGuessOption();
+    },
   },
   computed: {
     ...mapGetters({
       theme: "getTheme",
       music: "getSoundtrack",
+      guess: "getGuessOption",
     }),
   },
 };
@@ -95,6 +109,12 @@ export default {
       color: #132639 !important;
     }
     .menu-item {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      &.topic {
+        grid-template-columns: 4fr;
+        justify-items: end;
+      }
       .form-switch .form-icon.light {
         background: #008b8b !important;
       }
@@ -102,6 +122,7 @@ export default {
         color: #008b8b !important;
       }
       .menu-badge {
+        height: auto;
         .label.label-primary {
           background: #008b8b !important;
         }
