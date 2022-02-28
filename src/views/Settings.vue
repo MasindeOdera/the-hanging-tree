@@ -111,6 +111,7 @@ export default {
     .menu-item {
       display: grid;
       grid-template-columns: 1fr 2fr 1fr;
+      padding: unset;
       &.topic {
         grid-template-columns: 4fr;
         justify-items: end;
@@ -123,6 +124,9 @@ export default {
       }
       .menu-badge {
         height: auto;
+        .label {
+          margin-right: unset;
+        }
         .label.label-primary {
           background: #008b8b !important;
         }
@@ -134,6 +138,13 @@ export default {
       border-top: 0.05rem solid #bcc3ce !important;
     }
     .menu-item {
+      display: grid;
+      grid-template-columns: 1fr 2fr 1fr;
+      padding: unset;
+      &.topic {
+        grid-template-columns: 4fr;
+        justify-items: end;
+      }
       .form-checkbox input:checked + .form-icon.light-fill {
         background: #42b983 !important;
         border-color: #42b983 !important;
@@ -161,6 +172,10 @@ export default {
         font-weight: bold;
       }
       .menu-badge {
+        height: auto;
+        .label {
+          margin-right: unset;
+        }
         .label.label-primary {
           background: #42b983;
         }
