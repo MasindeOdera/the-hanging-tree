@@ -2,7 +2,11 @@
   <div
     class="letters"
     v-bind:class="{
-      standby: !this.started || this.stage !== 'play' || this.attempts === 0,
+      standby:
+        !this.started ||
+        this.stage !== 'play' ||
+        this.attempts === 0 ||
+        length === 0,
     }"
   >
     <div
@@ -49,6 +53,7 @@ export default {
       started: "getGame",
       attempts: "getAttempts",
       stage: "getStage",
+      length: "getWordLength",
     }),
   },
 };

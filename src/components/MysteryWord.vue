@@ -70,10 +70,21 @@ export default {
 
 <style lang="scss" scoped>
 .dark .home .mystery {
-  li {
-    background: #d9d9d9;
-    border-bottom: #d9d9d9;
-    border-bottom-style: solid;
+  .hidden-word {
+    .hiddenLetter {
+      background: #d9d9d9;
+      border-bottom: #d9d9d9;
+      border-bottom-style: solid;
+      color: #d9d9d9;
+    }
+    .empty {
+      background: none;
+      border-bottom: none;
+      width: 100vw;
+      height: 10px;
+    }
+  }
+  .reveal-word {
     color: #d9d9d9;
   }
 }
