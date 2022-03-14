@@ -7,15 +7,15 @@
     >
       <b>Start</b>
     </button>
-    <ul v-show="stage === 'play'">
-      <li
+    <div class="hidden-word" v-show="stage === 'play'">
+      <div
         v-for="(word, index) in mysteryWord"
         :key="index"
         v-bind:class="showLetter(word)"
       >
         {{ word }}
-      </li>
-    </ul>
+      </div>
+    </div>
     <h1 class="reveal-word" v-show="stage === 'stop'">
       It was {{ mysteryWord }}
     </h1>
@@ -37,7 +37,11 @@ export default {
     ...mapActions(["fetchLetters", "startGame", "replayGame", "saveResults"]),
     showLetter: function (word) {
       return {
-        reveal: this.guessed.includes(word),
+        reveal:
+          this.guessed.includes(word) ||
+          this.guessed.includes(word.toString().toLowerCase()),
+        empty: word === " ",
+        hiddenLetter: word,
       };
     },
     beginGame() {
@@ -75,7 +79,7 @@ export default {
 }
 .mystery {
   margin: auto;
-  width: 80%;
+  width: 92%;
   .start,
   .again {
     margin: 0.8rem;
@@ -88,13 +92,15 @@ export default {
     cursor: pointer;
     transition: width 4s, height 4s;
   }
-  ul {
+  .hidden-word {
     display: flex;
+    flex-wrap: wrap;
     list-style-type: none;
     justify-content: center;
     transition: width 4s, height 4s;
     cursor: default;
-    li {
+    margin-bottom: 2px;
+    .hiddenLetter {
       width: 30px;
       padding: 0px 6px;
       margin: auto 2px;
@@ -108,6 +114,17 @@ export default {
     .reveal {
       background: transparent !important;
       transition: width 4s, height 4s;
+    }
+    .empty:before {
+      content: "\A";
+      white-space: pre;
+      display: block;
+    }
+    .empty {
+      background: none;
+      border-bottom: none;
+      width: 100vw;
+      height: 10px;
     }
   }
   .reveal-word {

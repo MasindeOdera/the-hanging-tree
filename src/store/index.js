@@ -136,6 +136,11 @@ export default new Vuex.Store({
         chosen: false,
         status: "",
       },
+      {
+        choice: "'",
+        chosen: false,
+        status: "",
+      },
     ],
     animals: [
       "frog",
@@ -210,6 +215,9 @@ export default new Vuex.Store({
     setAnimals(state, payload) {
       state.animals = payload;
     },
+    setBeers(state, payload) {
+      state.beers = payload;
+    },
     setMysteryWord(state, payload) {
       state.mysteryWord = payload;
     },
@@ -234,7 +242,7 @@ export default new Vuex.Store({
     setStage(state, payload) {
       state.stage = payload;
     },
-    reduceWordLength(state, payload) {
+    setWordLength(state, payload) {
       state.wordLength = payload;
     },
     toggleLoading(state, payload) {
@@ -307,13 +315,23 @@ export default new Vuex.Store({
         this.state.animals[
           Math.floor(Math.random() * this.state.animals.length)
         ];
-      commit("setMysteryWord", animal);
-      localStorage.setItem("setMysteryWord", animal);
-      commit("reduceWordLength", animal.length);
+      const beer =
+        this.state.beers[Math.floor(Math.random() * this.state.beers.length)];
+      const beerLength = beer.replace(/\s+/g, "").length;
+      if (this.state.guessOption === "animal") {
+        commit("setMysteryWord", animal);
+        localStorage.setItem("setMysteryWord", animal);
+        commit("setWordLength", animal.length);
+      } else {
+        commit("setMysteryWord", beer);
+        localStorage.setItem("setMysteryWord", beer);
+        commit("setWordLength", beerLength);
+      }
     },
     // Create an action for loading.
     async selectButton({ commit }, letter) {
       const { choice } = letter;
+      const capital = choice.toString().toUpperCase();
       // Disable selected button.
       for (let i = 0; i < this.state.alphabetOptions.length; i++) {
         if (this.state.alphabetOptions[i].status === "loading") {
@@ -331,12 +349,18 @@ export default new Vuex.Store({
         localStorage.setItem("alphabetOptions", stringifyAlphabet);
       }, 250);
       // Add guessed letter to array.
-      if (this.state.mysteryWord.includes(choice)) {
+      if (
+        this.state.mysteryWord.includes(choice) ||
+        this.state.mysteryWord.includes(capital)
+      ) {
         this.state.guess.push(choice);
         localStorage.setItem("guessed", this.state.guess);
         let count = this.state.mysteryWord.split(choice).length - 1;
-        let reduced = this.state.wordLength - count;
-        commit("reduceWordLength", reduced);
+        let capitalLetter = this.state.mysteryWord.split(capital).length - 1;
+        let reduced = capital
+          ? this.state.wordLength - count - capitalLetter
+          : this.state.wordLength - count;
+        commit("setWordLength", reduced);
         localStorage.setItem("length", reduced);
       } else {
         this.state.incorrectChoice.push(choice);
@@ -438,6 +462,7 @@ export default new Vuex.Store({
   getters: {
     getAlphabetOptions: (state) => state.alphabetOptions,
     getAnimals: (state) => state.animals,
+    getBeers: (state) => state.beers,
     getMysteryWord: (state) => state.mysteryWord,
     getButtonSelected: (state) => state.buttonSelected,
     getGuess: (state) => state.guess,
