@@ -317,15 +317,15 @@ export default new Vuex.Store({
         ];
       const beer =
         this.state.beers[Math.floor(Math.random() * this.state.beers.length)];
-      const beerLength = beer.replace(/\s+/g, "").length;
+      const beerLength = beer.replace(/ /g, "");
       if (this.state.guessOption === "animal") {
         commit("setMysteryWord", animal);
         localStorage.setItem("setMysteryWord", animal);
         commit("setWordLength", animal.length);
       } else {
-        commit("setMysteryWord", beer);
+        commit("setMysteryWord", beer); // Still seems to error with C&D
         localStorage.setItem("setMysteryWord", beer);
-        commit("setWordLength", beerLength);
+        commit("setWordLength", beerLength.length);
       }
     },
     // Create an action for loading.
@@ -355,11 +355,17 @@ export default new Vuex.Store({
       ) {
         this.state.guess.push(choice);
         localStorage.setItem("guessed", this.state.guess);
+        choice.replace(/ /g, "");
         let count = this.state.mysteryWord.split(choice).length - 1;
-        let capitalLetter = this.state.mysteryWord.split(capital).length - 1;
+        let capitalLetter =
+          this.state.mysteryWord.replace(/ /g, "").split(capital).length - 1;
         let reduced = capital
           ? this.state.wordLength - count - capitalLetter
           : this.state.wordLength - count;
+        // This addresses issue with extra space when apostrophe is selected.
+        if (choice === "'" || capital === "'") {
+          reduced = reduced + 1;
+        }
         commit("setWordLength", reduced);
         localStorage.setItem("length", reduced);
       } else {
