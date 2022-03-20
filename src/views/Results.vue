@@ -6,22 +6,27 @@
         Result displayed once the following game has started.
       </p>
     </div>
-    <table class="table table-striped table-hover" v-show="results.length > 0">
-      <thead>
-        <tr>
-          <th>Game N<sup>o</sup></th>
-          <th>Word</th>
-          <th>N<sup>o</sup> Guesses</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr class="" v-for="(res, index) in results" :key="index">
-          <td>{{ index + 1 }}</td>
-          <td>{{ res[0] }}</td>
-          <td>{{ 7 - res[1] }}</td>
-        </tr>
-      </tbody>
-    </table>
+    <div class="table-container">
+      <table
+        class="table table-striped table-hover"
+        v-show="results.length > 0"
+      >
+        <thead>
+          <tr>
+            <th>Game N<sup>o</sup></th>
+            <th>Word</th>
+            <th>N<sup>o</sup> Guesses</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="" v-for="(res, index) in results" :key="index">
+            <td>{{ index + 1 }}</td>
+            <td>{{ res[0] }}</td>
+            <td>{{ 7 - res[1] }}</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
@@ -49,8 +54,12 @@ export default {
   width: 70%;
   text-align: center;
   cursor: default;
-  .table {
-    text-align: center;
+  .table-container {
+    height: 400px;
+    overflow: auto;
+    .table {
+      text-align: center;
+    }
   }
 }
 .dark .results {
