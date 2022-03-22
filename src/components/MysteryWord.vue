@@ -112,15 +112,19 @@ export default {
     cursor: default;
     margin-bottom: 2px;
     .hiddenLetter {
-      width: 30px;
+      width: 26px;
       padding: 0px 6px;
       margin: auto 2px;
       background: #2c3e50;
       border-bottom: #2c3e50;
       border-bottom-style: solid;
-      font-size: 30px;
+      font-size: 26px;
       font-weight: 500;
       font-feature-settings: normal;
+      @media screen and (min-width: 400px) {
+        width: 30px;
+        font-size: 30px;
+      }
     }
     .reveal {
       background: transparent !important;

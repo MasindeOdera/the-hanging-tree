@@ -60,6 +60,12 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+.dark {
+  .letters .alphabet .button {
+    background-color: #008b8b;
+    border: 0.05rem solid #008b8b !important;
+  }
+}
 .letters {
   width: 70%;
   display: flex;
@@ -73,12 +79,9 @@ export default {
   .alphabet {
     .button {
       margin: 0.4rem;
-      // padding: 0.75rem 1.25rem;
       background-color: #00bfa6;
       border: 0.05rem solid #00bfa6 !important;
       color: #000;
-      // border: none;
-      // border-radius: 4px 34px;
       cursor: pointer;
       &.selected,
       &.disabled {
