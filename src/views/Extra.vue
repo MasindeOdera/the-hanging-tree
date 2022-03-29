@@ -45,7 +45,6 @@ export default {
     flex-shrink: 0;
   }
   .skeleton {
-    opacity: 0.8;
     animation: skeleton-loading 0.5s linear infinite alternate;
   }
 

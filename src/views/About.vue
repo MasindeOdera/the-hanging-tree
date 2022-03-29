@@ -70,6 +70,7 @@
               </div>
             </div>
           </div>
+          <li class="divider"></li>
         </div>
       </div>
     </div>

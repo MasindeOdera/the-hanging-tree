@@ -251,6 +251,9 @@ export default new Vuex.Store({
     updateResults(state, payload) {
       state.results.push(payload);
     },
+    clearResults(state, payload) {
+      state.results = payload;
+    },
     toggleTheme(state, payload) {
       state.theme = payload;
     },
@@ -300,11 +303,17 @@ export default new Vuex.Store({
       }
       // Persist results generated.
       if (localStorage.getItem("updateResults")) {
-        state.results = JSON.parse(localStorage["updateResults"]);
+        if (state.results.length > 0) {
+          state.results = JSON.parse(localStorage["updateResults"]);
+        }
       }
       // Persist theme.
       if (localStorage.getItem("guessOption")) {
         state.guessOption = localStorage.guessOption;
+      }
+      // Persist cleared results.
+      if (localStorage.getItem("clearResults")) {
+        state.results = localStorage.clearResults;
       }
     },
   },
@@ -462,6 +471,10 @@ export default new Vuex.Store({
         commit("toggleGuessOption", "animal");
         localStorage.setItem("guessOption", "animal");
       }
+    },
+    async clearSavedResults({ commit }) {
+      commit("clearResults", []);
+      localStorage.setItem("clearResults", []);
     },
   },
   modules: {},

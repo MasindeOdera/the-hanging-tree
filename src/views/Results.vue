@@ -27,13 +27,22 @@
         </tbody>
       </table>
     </div>
+    <button class="clear" @click="clearResults()" v-show="results.length > 3">
+      <b>Clear results?</b>
+    </button>
   </div>
 </template>
 
 <script>
-import { mapGetters } from "vuex";
+import { mapActions, mapGetters } from "vuex";
 export default {
   name: "Results",
+  methods: {
+    ...mapActions(["clearSavedResults"]),
+    clearResults() {
+      this.clearSavedResults();
+    },
+  },
   computed: {
     ...mapGetters({
       guessed: "getGuess",
@@ -61,6 +70,16 @@ export default {
       text-align: center;
     }
   }
+  .clear {
+    margin: 0.8rem;
+    padding: 0.5rem;
+    color: #000;
+    background-color: #00bfa6;
+    border: none;
+    border-radius: 34px;
+    cursor: pointer;
+    transition: width 4s, height 4s;
+  }
 }
 .dark .results {
   color: #008b8b;
@@ -69,6 +88,9 @@ export default {
   }
   .table.table-hover tbody tr:hover {
     background: #bcc3ce !important;
+  }
+  .clear {
+    background-color: #008b8b;
   }
 }
 </style>

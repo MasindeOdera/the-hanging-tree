@@ -95,7 +95,6 @@ export default {
   .again {
     margin: 0.8rem;
     padding: 0.5rem;
-    // padding: 0.75rem 1.25rem;
     color: #000;
     background-color: #00bfa6;
     border: none;

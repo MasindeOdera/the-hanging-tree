@@ -55,12 +55,6 @@
         </div>
       </li>
       <li class="divider"></li>
-      <li class="menu-item">
-        <a href="#"> <i class="icon icon-link"></i> options </a>
-        <div class="menu-badge">
-          <label class="label label-primary">2</label>
-        </div>
-      </li>
     </ul>
   </div>
 </template>
