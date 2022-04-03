@@ -206,6 +206,7 @@ export default new Vuex.Store({
     theme: "light",
     isPlaying: false,
     guessOption: "animal",
+    resultsSaved: false,
   },
   mutations: {
     //syncronous
@@ -263,6 +264,9 @@ export default new Vuex.Store({
     toggleGuessOption(state, payload) {
       state.guessOption = payload;
     },
+    keepSavedResults(state, payload) {
+      state.resultsSaved = payload;
+    },
     initialiseStore(state) {
       // Persist theme.
       if (localStorage.getItem("theme")) {
@@ -294,26 +298,24 @@ export default new Vuex.Store({
         state.guess = localStorage.guessed;
       }
       // Persist length of word.
-      if (localStorage.getItem("length")) {
-        state.wordLength = localStorage.length;
+      if (localStorage.getItem("lengthOfWord")) {
+        state.wordLength = localStorage.lengthOfWord;
       }
       // Persist alphabet letters used.
       if (localStorage.getItem("alphabetOptions")) {
         state.alphabetOptions = JSON.parse(localStorage["alphabetOptions"]);
       }
+      // Persist saved results.
+      if (localStorage.getItem("keepSavedResults")) {
+        state.resultsSaved = localStorage.keepSavedResults;
+      }
       // Persist results generated.
-      if (localStorage.getItem("updateResults")) {
-        if (state.results.length > 0) {
-          state.results = JSON.parse(localStorage["updateResults"]);
-        }
+      if (localStorage.getItem("updateResults") && state.resultsSaved) {
+        state.results = JSON.parse(localStorage["updateResults"]);
       }
       // Persist theme.
       if (localStorage.getItem("guessOption")) {
         state.guessOption = localStorage.guessOption;
-      }
-      // Persist cleared results.
-      if (localStorage.getItem("clearResults")) {
-        state.results = localStorage.clearResults;
       }
     },
   },
@@ -331,10 +333,12 @@ export default new Vuex.Store({
         commit("setMysteryWord", animal);
         localStorage.setItem("setMysteryWord", animal);
         commit("setWordLength", animal.length);
+        localStorage.setItem("lengthOfWord", animal.length);
       } else {
         commit("setMysteryWord", beer); // Still seems to error with C&D
         localStorage.setItem("setMysteryWord", beer);
         commit("setWordLength", beerLength.length);
+        localStorage.setItem("lengthOfWord", beerLength.length);
       }
     },
     // Create an action for loading.
@@ -376,7 +380,7 @@ export default new Vuex.Store({
           reduced = reduced + 1;
         }
         commit("setWordLength", reduced);
-        localStorage.setItem("length", reduced);
+        localStorage.setItem("lengthOfWord", reduced);
       } else {
         this.state.incorrectChoice.push(choice);
         commit("reduceAttempt");
@@ -407,6 +411,8 @@ export default new Vuex.Store({
       let option = this.state.status[1];
       commit("setStage", option);
       localStorage.setItem("setStage", option);
+      commit("keepSavedResults", true);
+      localStorage.setItem("keepSavedResults", true);
       // If mobile view, scroll up.
       if (
         /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
@@ -443,6 +449,8 @@ export default new Vuex.Store({
         // Draw the user's attention to the lives count.
         document.getElementByClassName("count").scrollIntoView();
       }, 500);
+      commit("keepSavedResults", true);
+      localStorage.setItem("keepSavedResults", true);
     },
     async saveResults({ commit }) {
       commit("updateResults", [this.state.mysteryWord, this.state.attempts]);
@@ -474,7 +482,9 @@ export default new Vuex.Store({
     },
     async clearSavedResults({ commit }) {
       commit("clearResults", []);
-      localStorage.setItem("clearResults", []);
+      localStorage.setItem("updateResults", []);
+      commit("keepSavedResults", false);
+      localStorage.setItem("keepSavedResults", false);
     },
   },
   modules: {},
@@ -494,5 +504,6 @@ export default new Vuex.Store({
     getTheme: (state) => state.theme,
     getSoundtrack: (state) => state.isPlaying,
     getGuessOption: (state) => state.guessOption,
+    getResultsSaved: (state) => state.resultsSaved,
   },
 });

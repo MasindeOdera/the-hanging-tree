@@ -52,6 +52,7 @@ export default {
       stage: "getStage",
       length: "getWordLength",
       results: "getResults",
+      resultsSaved: "getResultsSaved",
     }),
   },
 };
